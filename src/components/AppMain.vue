@@ -91,6 +91,7 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+
 img{
   height: 200px;
   width: 100%;
@@ -106,4 +107,5 @@ img{
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 </style>
