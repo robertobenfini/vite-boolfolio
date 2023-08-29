@@ -3,7 +3,9 @@ export default {
   name: 'AppMain',
   data(){
     return{
-      
+      baseUrl: 'http://localhost:8000',
+      projects: [],
+      loading: true
     }
   },
   created(){
