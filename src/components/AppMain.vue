@@ -1,8 +1,12 @@
 <script>
 import axios from 'axios';
+import AppLoader from './AppLoader.vue';
 
 export default {
   name: 'AppMain',
+  components:{
+    AppLoader
+  },
 
   data(){
     return{
@@ -44,7 +48,16 @@ export default {
 
   <div class="container">
     <div class="row">
-      <h1 class="text-center my-4">Progetti</h1>
+      <div class="col-12">
+        <h1 class="text-center my-4">Progetti</h1>
+      </div>
+    </div>
+  </div>
+  <div v-if="loading" class="loader-position">
+    <AppLoader/>
+  </div>
+  <div v-else class="container">
+    <div class="row">
       <div class="col-12 col-md-4" v-for="project in projects" :key="project.id">
         <div class="card my-3 min_height-377">
           <div class="card-header">
@@ -85,5 +98,12 @@ img{
 
 .min_height-377{
   min-height: 377px;
+}
+
+.loader-position{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>
