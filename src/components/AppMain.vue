@@ -12,26 +12,36 @@ export default {
     return{
       baseUrl: 'http://localhost:8000',
       projects: [],
-      loading: true
+      loading: true,
+      currentPage: 1,
+      lastPage: null
     }
   },
   created(){
-    this.getProjects();
+    this.getProjects(1);
   },
   methods:{
-    getProjects(){
+    getProjects(num_page){
       this.loading = true;
-      axios.get(`${this.baseUrl}/api/projects`).then((response) => {
+      // axios.get(`${this.baseUrl}/api/projects`).then((response) => {
         
-        if(response.data.success){
-          this.projects = response.data.results;
-          this.loading = false;
-        }
+      //   if(response.data.success){
+      //     this.projects = response.data.results;
+      //     this.loading = false;
+      //   }
 
-        else{
+      //   else{
 
-        }
+      //   }
+      // })
+
+      axios.get(`${this.baseUrl}/api/projects`, { params: { page:num_page }}).then((response) => {
+        this.projects = response.data.results.data;
+        this.currentPage = response.data.results.current_page;
+        this.lastPage = response.data.results.last_page;
+        this.loading = false;
       })
+
     },
     truncateText(text){
       if(text.length > 100){
@@ -84,6 +94,26 @@ export default {
             <a href="#" class="btn btn-sm btn-primary">Leggi il progetto</a>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="d-flex justify-content-center">
+          <ul class="pagination">
+            <li :class="currentPage === 1 ? 'disabled' : ''">
+              <button class="page-link" @click="getProjects(currentPage - 1)">
+                Precedente
+              </button>
+            </li>
+            <li :class="currentPage === lastPage ? 'disabled' : ''">
+              <button class="page-link" @click="getProjects(currentPage + 1)">
+                Successivo
+              </button>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
   </div>
