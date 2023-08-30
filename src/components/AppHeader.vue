@@ -27,7 +27,7 @@ export default {
 }
 </script>
 
-<template lang="">
+<template>
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
