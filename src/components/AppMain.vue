@@ -56,71 +56,76 @@ export default {
 
 <template>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <h1 class="text-center my-4">Progetti</h1>
-      </div>
-    </div>
-  </div>
   <div v-if="loading" class="loader-position">
     <AppLoader/>
   </div>
-  <div v-else class="container">
-    <div class="row">
-      <div class="col-12 col-md-4" v-for="project in projects" :key="project.id">
-        <div class="card my-3 min_height-377">
-          <div class="card-header">
-            {{ project.title }}
-          </div>
-          <div class="card-image-top">
-            <img :src="`${baseUrl}/storage/${project.image}`" alt="img">
-          </div>
-          <div class="card-body">
-            <div>
-              <span v-if="project.type">{{ project.type.name }}</span>
-              <span v-else>Categoria non assegnata</span>
+  <main v-else>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="text-center my-4">Progetti</h1>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-4" v-for="project in projects" :key="project.id">
+          <div class="card my-3 min_height-377">
+            <div class="card-header">
+              {{ project.title }}
             </div>
-            <div v-if="project.technologies">
-              <span class="badge text-bg-primary me-3" v-for="technology in project.technologies" :key="technology.id">
-                {{ technology.name }}
-              </span>
+            <div class="card-image-top">
+              <img :src="`${baseUrl}/storage/${project.image}`" alt="img">
             </div>
-            <div>
-              {{ truncateText(project.content) }}
+            <div class="card-body">
+              <div>
+                <span v-if="project.type">{{ project.type.name }}</span>
+                <span v-else>Categoria non assegnata</span>
+              </div>
+              <div v-if="project.technologies">
+                <span class="badge text-bg-primary me-3" v-for="technology in project.technologies" :key="technology.id">
+                  {{ technology.name }}
+                </span>
+              </div>
+              <div>
+                {{ truncateText(project.content) }}
+              </div>
             </div>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-sm btn-primary">Leggi il progetto</a>
+            <div class="card-footer">
+              <a href="#" class="btn btn-sm btn-primary">Leggi il progetto</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <nav class="d-flex justify-content-center">
-          <ul class="pagination">
-            <li :class="currentPage === 1 ? 'disabled' : ''">
-              <button class="page-link" @click="getProjects(currentPage - 1)">
-                Precedente
-              </button>
-            </li>
-            <li :class="currentPage === lastPage ? 'disabled' : ''">
-              <button class="page-link" @click="getProjects(currentPage + 1)">
-                Successivo
-              </button>
-            </li>
-          </ul>
-        </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="d-flex justify-content-center">
+            <ul class="pagination">
+              <li :class="currentPage === 1 ? 'disabled' : ''">
+                <button class="page-link" @click="getProjects(currentPage - 1)">
+                  Precedente
+                </button>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">{{ currentPage }}</a></li>
+              <li :class="currentPage === lastPage ? 'disabled' : ''">
+                <button class="page-link" @click="getProjects(currentPage + 1)">
+                  Successivo
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
     </div>
-  </div>
+  </main>
 
 </template>
 
 <style lang="scss" scoped>
+
+@use '../styles/generals.scss';
 
 img{
   height: 200px;
