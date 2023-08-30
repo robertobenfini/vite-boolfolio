@@ -1,5 +1,7 @@
 <script>
 import axios from 'axios';
+
+import { store } from '../store.js';
 import AppLoader from '../components/AppLoader.vue';
 
 export default {
@@ -10,9 +12,8 @@ export default {
 
   data(){
     return{
-      baseUrl: 'http://localhost:8000',
+      store,
       projects: [],
-      loading: true,
       currentPage: 1,
       lastPage: null
     }
@@ -22,7 +23,7 @@ export default {
   },
   methods:{
     getProjects(num_page){
-      this.loading = true;
+      this.store.loading = true;
       // axios.get(`${this.baseUrl}/api/projects`).then((response) => {
         
       //   if(response.data.success){
@@ -35,11 +36,11 @@ export default {
       //   }
       // })
 
-      axios.get(`${this.baseUrl}/api/projects`, { params: { page:num_page }}).then((response) => {
+      axios.get(`${this.store.baseUrl}/api/projects`, { params: { page:num_page }}).then((response) => {
         this.projects = response.data.results.data;
         this.currentPage = response.data.results.current_page;
         this.lastPage = response.data.results.last_page;
-        this.loading = false;
+        this.store.loading = false;
       })
 
     },
@@ -56,7 +57,7 @@ export default {
 
 <template>
 
-  <div v-if="loading" class="loader-position">
+  <div v-if="store.loading" class="loader-position">
     <AppLoader/>
   </div>
   <main v-else>
@@ -75,7 +76,7 @@ export default {
               {{ project.title }}
             </div>
             <div class="card-image-top">
-              <img :src="`${baseUrl}/storage/${project.image}`" alt="img">
+              <img :src="`${store.baseUrl}/storage/${project.image}`" alt="img">
             </div>
             <div class="card-body">
               <div>
