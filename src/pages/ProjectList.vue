@@ -99,15 +99,6 @@ export default {
 
 @use '../styles/generals.scss';
 
-img{
-  height: 200px;
-  width: 100%;
-}
-
-.min_height-377{
-  min-height: 377px;
-}
-
 .loader-position{
   position: absolute;
   top: 50%;

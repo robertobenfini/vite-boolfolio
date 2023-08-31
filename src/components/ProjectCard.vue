@@ -48,12 +48,19 @@ export default {
             </div>
         </div>
         <div class="card-footer">
-            <a href="#" class="btn btn-sm btn-primary">Leggi il progetto</a>
+            <router-link class="btn btn-sm btn-primary" :to="{ name: 'single-project', params: { slug: project.slug }}">Visualizza progetto</router-link>
         </div>
     </div>
 
 </template>
 
-<style lang="">
-    
+<style lang="scss" scoped>
+img{
+  height: 200px;
+  width: 100%;
+}
+
+.min_height-377{
+  min-height: 377px;
+}
 </style>
