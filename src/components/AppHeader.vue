@@ -19,7 +19,8 @@ export default {
                     label: 'Categorie'
                 },
                 {
-                    label: 'Contatti'
+                    label: 'Contatti',
+                    routeName: 'contact-us'
                 }
             ]
         }
