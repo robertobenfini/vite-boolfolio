@@ -16,11 +16,11 @@ export default {
                     routeName: 'projects'
                 },
                 {
-                    label: 'Categorie'
-                },
-                {
                     label: 'Contatti',
                     routeName: 'contact-us'
+                },
+                {
+                    label: 'Categorie'
                 }
             ]
         }

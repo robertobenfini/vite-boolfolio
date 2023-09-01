@@ -71,14 +71,14 @@ export default {
                         <div class="col-12 col-md-6">
                             <label class="control-label">Nome e Cognome</label>
                             <input type="text" name="name" v-model="name" placeholder="Nome" class="form-control" :class="errors.name ? 'is-invalid' : ''">
-                            <p v-for="(error, index) in errors" :key="index" class="text-danger">
+                            <p v-for="(error, index) in errors.name" :key="index" class="text-danger">
                                 {{ error }}
                             </p>
                         </div>
                         <div class="col-12 col-md-6">
                             <label class="control-label">Email</label>
                             <input type="text" name="email" v-model="email" placeholder="Email" id="email" class="form-control" :class="errors.email ? 'is-invalid' : ''">
-                            <p v-for="(error, index) in errors" :key="index" class="text-danger">
+                            <p v-for="(error, index) in errors.email" :key="index" class="text-danger">
                                 {{ error }}
                             </p>
                         </div>
@@ -87,7 +87,7 @@ export default {
                             <textarea name="content" v-model="message" placeholder="Messaggio" id="content" class="form-control" :class="errors.content ? 'is-invalid' : ''">
 
                             </textarea>
-                            <p v-for="(error, index) in errors" :key="index" class="text-danger">
+                            <p v-for="(error, index) in errors.content" :key="index" class="text-danger">
                                 {{ error }}
                             </p>
                         </div>
